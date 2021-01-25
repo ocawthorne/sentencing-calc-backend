@@ -1,7 +1,7 @@
 class DefendantsController < ApplicationController
-   
-   def new
 
+   def new
+      
    end
 
    def index
