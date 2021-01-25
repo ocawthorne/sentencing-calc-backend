@@ -5,10 +5,10 @@ require "rails"
 require "active_model/railtie"
 require "active_job/railtie"
 require "active_record/railtie"
-require "active_storage/engine"
+# require "active_storage/engine"
 require "action_controller/railtie"
 require "action_mailer/railtie"
-require "action_mailbox/engine"
+# require "action_mailbox/engine"
 require "action_text/engine"
 require "action_view/railtie"
 require "action_cable/engine"
@@ -23,6 +23,10 @@ module SentencingCalculator
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+      initializer(:remove_action_mailbox_and_activestorage_routes, after: :add_routing_paths) { |app|
+        app.routes_reloader.paths.delete_if {|path| path =~ /activestorage/}
+        app.routes_reloader.paths.delete_if {|path| path =~ /actionmailbox/ }
+      }
 
     # Configuration for the application, engines, and railties goes here.
     #
