@@ -9,7 +9,8 @@ class DefendantsController < ApplicationController
    end
 
    def show
-
+      defendant = Defendant.find_by(id: params[:id])
+      render json: defendant
    end
 
 end
