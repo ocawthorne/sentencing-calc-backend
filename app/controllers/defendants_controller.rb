@@ -1,0 +1,3 @@
+class DefendantsController < ApplicationController
+
+end

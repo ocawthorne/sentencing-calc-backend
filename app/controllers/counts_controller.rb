@@ -1,0 +1,3 @@
+class CountsController < ApplicationController
+
+end
