@@ -5,7 +5,7 @@ class DefendantsController < ApplicationController
    end
 
    def index
-
+      render plain: "Hello"
    end
 
    def show
