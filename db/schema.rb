@@ -10,16 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_26_232332) do
+ActiveRecord::Schema.define(version: 2021_01_28_160944) do
+
+  create_table "counts", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "defendants", force: :cascade do |t|
     t.string "name"
     t.float "discount"
-    t.datetime "sentencing_date"
-    t.string "sentence_length"
-    t.string "session_hash"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "session_id"
+    t.string "sentence_len"
+    t.integer "sentence_len_raw"
   end
 
 end
