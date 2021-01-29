@@ -9,7 +9,7 @@ class Api::V1::DefendantsController < ApplicationController
       defendant = Defendant.find_by(id: params[:id])
       render json: defendant, status: 200
    end
-
+   
    def create
       defendant = Defendant.create(defendant_params)
       render json: defendant, status: 200
@@ -29,7 +29,7 @@ class Api::V1::DefendantsController < ApplicationController
    private
 
    def defendant_params
-      params.require(:defendant).permit(:name)
+      params.require(:defendant).permit(:name, :discount, :session_id, :sentence_len, :sentence_len_raw)
    end
 
 end
