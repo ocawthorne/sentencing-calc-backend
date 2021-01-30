@@ -16,7 +16,7 @@ class Api::V1::DefendantsController < ApplicationController
          c = Count.create(name: count["name"], sentence_len: count["length"], defendant_id: defendant.id)
          defendant.counts << c
       end
-      render json: defendant, include: :counts, status: 200 
+      render json: defendant, include: :counts, status: 200
    end
 
    # def update
