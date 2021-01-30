@@ -1,8 +1,8 @@
 class Api::V1::DefendantsController < ApplicationController
 
    def index
-      defendants = Defendant.all #TODO only include Defendants which match the current session ID.
-      render json: defendants, status: 200
+      defendants = Defendant.all
+      render json: defendants, include: :counts, status: 200
    end
 
    def show
@@ -12,19 +12,23 @@ class Api::V1::DefendantsController < ApplicationController
    
    def create
       defendant = Defendant.create(defendant_params)
-      render json: defendant, status: 200
+      params["counts"].each do |count|
+         c = Count.create(name: count["name"], sentence_len: count["length"], defendant_id: defendant.id)
+         defendant.counts << c
+      end
+      render json: defendant, include: :counts, status: 200 
    end
 
-   def update
-      defendant = Defendant.find_by(id: params[:id])
-      defendant.update(defendant_params)
-      render json: defendant, status: 200
-   end
+   # def update
+   #    defendant = Defendant.find_by(id: params[:id])
+   #    defendant.update(defendant_params)
+   #    render json: defendant, status: 200
+   # end
 
-   def destroy
-      defendant = Defendant.find_by(id: params[:id])
-      defendant.destroy
-   end
+   # def destroy
+   #    defendant = Defendant.find_by(id: params[:id])
+   #    defendant.destroy
+   # end
 
    private
 
