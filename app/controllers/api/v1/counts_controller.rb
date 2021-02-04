@@ -6,6 +6,7 @@ class Api::V1::CountsController < ApplicationController
    end
 
    def create
+      sleep(0.25) # Give database time to update (Defendant should come first)
       c = Count.create(name: params["name"], sentence_len: params["length"], defendant_id: Defendant.last.id)
       render_data(c)
    end
